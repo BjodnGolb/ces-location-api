@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+  ces-backend:
+    image: registry.heroku.com/ces-location-api/web
+    container_name: ces-backend
+    mem_limit: 4192m
+    ports:
+    - 10001:8080
+    networks:
+    - cesnet
+  ces-frontend:
+    image: registry.heroku.com/frontend-ces-test/web
+    container_name: ces-frontend
+    mem_limit: 64m
+    environment:
+      PORT: 8080
+    ports:
+    - 10000:8080
+    networks:
+    - cesnet
+
+networks:
+  cesnet:
+    driver: bridge
